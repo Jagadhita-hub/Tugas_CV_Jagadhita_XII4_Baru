@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Jagadhita Roem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff0f3;
+            color: #4a4a4a;
+        }
+
+        .pink-gradient {
+            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+        }
+
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            border: 5px solid white;
+            box-shadow: 0 4px 15px rgba(255, 133, 162, 0.3);
+            border-radius: 50%;
+            overflow: hidden;
+            margin: -75px auto 15px auto;
+            background-color: #fce4ec;
+            position: relative;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .section-title {
+            color: #ff4d6d;
+            border-bottom: 2px solid #ffb3c1;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-item {
+            background: white;
+            border-left: 4px solid #ff85a2;
+            transition: all 0.3s ease;
+        }
+
+        .card-item:hover {
+            transform: translateX(5px);
+            background: #fffafa;
+        }
+
+        .icon-circle {
+            background-color: #ffccd5;
+            color: #ff4d6d;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .badge {
+            background-color: #ff85a2;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="py-12 px-4 md:px-0">
+
+    <div class="max-w-4xl mx-auto shadow-2xl rounded-3xl overflow-hidden bg-white">
+        
+        <!-- Header / Banner Area -->
+        <header class="pink-gradient h-48 md:h-56 relative"></header>
+
+        <!-- Profile Section with Photo -->
+        <div class="relative px-8 md:px-12 pb-8">
+            <div class="profile-img-container">
+                <!-- Ganti URL di src dengan link foto kamu nantinya -->
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jagadhita&backgroundColor=ffccd5" alt="Foto Jagadhita Roem">
+            </div>
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Jagadhita Roem</h1>
+                <p class="text-pink-500 font-medium text-lg">Pelajar & Kreator Muda</p>
+                <p class="text-gray-400 text-sm mt-1">Lahir: 20 Juli 2008</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Sidebar Column -->
+                <aside class="space-y-8">
+                    <!-- Kontak -->
+                    <section>
+                        <h3 class="section-title text-lg">Kontak</h3>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center">
+                                <span class="icon-circle"><i class="fas fa-phone"></i></span>
+                                <span>+62 822-4029-6565</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="icon-circle"><i class="fas fa-envelope"></i></span>
+                                <span class="truncate">jagadhitasaja@gmail.com</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="icon-circle mt-1"><i class="fas fa-map-marker-alt"></i></span>
+                                <span class="flex-1 text-xs leading-relaxed">Kp. Babakan Rt02/09 Des. Rancamanyar Kec. Baleendah Kab. Bandung 40375</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Sosmed -->
+                    <section>
+                        <h3 class="section-title text-lg">Sosial Media</h3>
+                        <div class="space-y-3 text-sm text-pink-600 font-medium">
+                            <a href="#" class="flex items-center hover:underline">
+                                <span class="icon-circle"><i class="fab fa-instagram"></i></span> @jagadhitaroem
+                            </a>
+                            <a href="#" class="flex items-center hover:underline">
+                                <span class="icon-circle"><i class="fab fa-tiktok"></i></span> @jyfrogletta
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- Hobby & Bahasa -->
+                    <section>
+                        <h3 class="section-title text-lg">Hobby</h3>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="badge">Membuat Journal</span>
+                            <span class="badge">Travelling</span>
+                            <span class="badge">Make-up</span>
+                        </div>
+
+                        <h3 class="section-title text-lg">Bahasa</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1 text-xs">
+                                    <span>Indonesia</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full bg-pink-100 rounded-full h-1.5">
+                                    <div class="bg-pink-400 h-1.5 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1 text-xs">
+                                    <span>Inggris</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="w-full bg-pink-100 rounded-full h-1.5">
+                                    <div class="bg-pink-400 h-1.5 rounded-full" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </aside>
+
+                <!-- Main Column -->
+                <div class="md:col-span-2 space-y-10">
+                    
+                    <!-- Tentang Diri -->
+                    <section>
+                        <h3 class="section-title">Tentang Diri</h3>
+                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                            Halo! Saya Jagadhita Roem, seorang pelajar yang berdedikasi tinggi dan lahir pada 20 Juli 2008. Saya dikenal sebagai pribadi yang disiplin, tepat waktu, dan memiliki inisiatif tinggi dalam menyelesaikan tanggung jawab. Saya sangat senang mengeksplorasi kreativitas melalui journaling dan teknik tata rias, serta memiliki keinginan kuat untuk terus berkembang baik secara akademik maupun karakter.
+                        </p>
+                    </section>
+
+                    <!-- Pendidikan -->
+                    <section>
+                        <h3 class="section-title">Riwayat Pendidikan</h3>
+                        <div class="space-y-3">
+                            <div class="card-item p-4 rounded-r-xl shadow-sm">
+                                <h4 class="font-bold text-gray-800">SMA KP Baleendah</h4>
+                                <p class="text-xs text-pink-500">Lulus Tahun 2026</p>
+                            </div>
+                            <div class="card-item p-4 rounded-r-xl shadow-sm">
+                                <h4 class="font-bold text-gray-800">MTS 31 Banjaran</h4>
+                                <p class="text-xs text-pink-500">Lulus Tahun 2023</p>
+                            </div>
+                            <div class="card-item p-4 rounded-r-xl shadow-sm">
+                                <h4 class="font-bold text-gray-800">SDN Rancamanyar 06</h4>
+                                <p class="text-xs text-pink-500">Lulus Tahun 2020</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Organisasi -->
+                    <section>
+                        <h3 class="section-title">Pengalaman Organisasi</h3>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex gap-4">
+                                <div class="text-pink-400 font-bold w-12 pt-1 italic">SMA</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Sekretaris OSIS & Anggota English Club</h4>
+                                    <p class="text-gray-500 text-xs mt-1">Mengelola korespondensi organisasi dan aktif berdiskusi dalam forum bahasa Inggris.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="text-pink-400 font-bold w-12 pt-1 italic">SMP</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Ekskul Tahsin</h4>
+                                    <p class="text-gray-500 text-xs mt-1">Mengembangkan kefasihan membaca dan memahami kaidah tajwid Al-Qur'an.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="text-pink-400 font-bold w-12 pt-1 italic">SD</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Ekskul Pramuka</h4>
+                                    <p class="text-gray-500 text-xs mt-1">Membangun dasar kedisiplinan, kerjasama tim, dan kemandirian.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Keahlian -->
+                    <section>
+                        <h3 class="section-title">Keahlian Utama</h3>
+                        <div class="grid grid-cols-2 gap-y-2 gap-x-4 text-xs md:text-sm">
+                            <div class="flex items-center"><i class="fas fa-heart text-pink-400 mr-2"></i> Disiplin yang tinggi</div>
+                            <div class="flex items-center"><i class="fas fa-heart text-pink-400 mr-2"></i> Tepat waktu</div>
+                            <div class="flex items-center"><i class="fas fa-heart text-pink-400 mr-2"></i> Self Urgency & Sigap</div>
+                            <div class="flex items-center"><i class="fas fa-heart text-pink-400 mr-2"></i> Mau belajar terus</div>
+                            <div class="flex items-center"><i class="fas fa-heart text-pink-400 mr-2"></i> Adaptasi Cepat</div>
+                            <div class="flex items-center"><i class="fas fa-heart text-pink-400 mr-2"></i> Ketelitian Administrasi</div>
+                        </div>
+                    </section>
+
+                    <!-- Sertifikat -->
+                    <section>
+                        <h3 class="section-title">Sertifikat & Prestasi</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start bg-pink-50 p-3 rounded-lg border border-pink-100 italic">
+                                <i class="fas fa-award text-yellow-500 mt-1 mr-3"></i>
+                                Juara 1 BTQ Desa Rancamanyar
+                            </li>
+                            <li class="flex items-start bg-pink-50 p-3 rounded-lg border border-pink-100 italic">
+                                <i class="fas fa-award text-yellow-500 mt-1 mr-3"></i>
+                                Juara 1 Tahfidz Qur'an Desa Rancamanyar
+                            </li>
+                            <li class="flex items-start bg-pink-50 p-3 rounded-lg border border-pink-100 italic">
+                                <i class="fas fa-award text-yellow-500 mt-1 mr-3"></i>
+                                Juara 1 TKA Ekonomi SMA KP Baleendah
+                            </li>
+                        </ul>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-50 text-center py-6 text-[10px] text-gray-400 border-t border-gray-100 uppercase tracking-widest">
+            &copy; 2024 Jagadhita Roem &bull; Designed with love
+        </footer>
+    </div>
+
+</body>
+</html>
