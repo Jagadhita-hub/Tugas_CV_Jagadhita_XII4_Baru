@@ -25,7 +25,7 @@
             font-family: 'Dancing Script', cursive;
         }
 
-        /* Background Mesh Glow */
+        /* Background Mesh Glow yang dinamis */
         .mesh-gradient {
             position: fixed;
             top: 0;
@@ -34,13 +34,30 @@
             height: 100%;
             z-index: -1;
             background: 
-                radial-gradient(at 0% 0%, rgba(255, 182, 193, 0.3) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(255, 240, 243, 0.4) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(255, 143, 163, 0.2) 0px, transparent 50%),
-                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.5) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(255, 182, 193, 0.4) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(255, 240, 243, 0.5) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(255, 143, 163, 0.3) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.6) 0px, transparent 50%);
+            animation: backgroundFlow 15s ease infinite alternate;
         }
 
-        /* Glass Card with Spotlight Effect */
+        @keyframes backgroundFlow {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Reveal Animation on Load */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes revealIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Premium Card dengan Animasi */
         .premium-card {
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(20px);
@@ -48,78 +65,60 @@
             border-radius: 1.5rem;
             position: relative;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         @media (min-width: 768px) {
-            .premium-card {
-                border-radius: 2rem;
-            }
+            .premium-card { border-radius: 2rem; }
         }
 
+        .premium-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-pink);
+            box-shadow: 0 30px 60px -15px rgba(255, 77, 109, 0.2);
+        }
+
+        /* Floating Animation */
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(2deg); }
+            50% { transform: translateY(-15px) rotate(-1deg); }
+        }
+
+        /* Spotlight Effect */
         .premium-card::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 143, 163, 0.2) 0%, transparent 60%);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 143, 163, 0.25) 0%, transparent 60%);
             opacity: 0;
             transition: opacity 0.5s;
             pointer-events: none;
         }
 
-        .premium-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--soft-pink);
-            box-shadow: 0 25px 50px -12px rgba(255, 77, 109, 0.15);
-        }
-
-        .premium-card:hover::before {
-            opacity: 1;
-        }
-
-        /* Sparkle Animation */
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        .sparkle-dot {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 10px white;
-            animation: sparkle 2s infinite;
-        }
+        .premium-card:hover::before { opacity: 1; }
 
         .gradient-text {
-            background: linear-gradient(to right, #ff4d6d, #ff8fa3);
+            background: linear-gradient(90deg, #ff4d6d, #ff8fa3, #ff4d6d);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
         }
 
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: -25px;
-            top: 8px;
-            width: 10px;
-            height: 10px;
-            background: white;
-            border: 2px solid var(--accent-pink);
-            border-radius: 50%;
-            z-index: 2;
+        @keyframes shine {
+            to { background-position: 200% center; }
         }
 
-        @media (min-width: 768px) {
-            .timeline-item::after {
-                left: -33px;
-                width: 12px;
-                height: 12px;
-                border-width: 3px;
-            }
-        }
+        /* Staggered Delay for Reveal */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
     </style>
 </head>
 <body class="antialiased">
@@ -130,26 +129,25 @@
         
         <!-- Header Section -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-center mb-10 md:mb-16">
-            <div class="lg:col-span-4 flex justify-center">
-                <div class="relative group">
-                    <div class="sparkle-dot" style="top: 10%; left: 10%; animation-delay: 0.2s"></div>
-                    <div class="sparkle-dot" style="top: 20%; right: 5%; animation-delay: 0.5s"></div>
-                    <div class="sparkle-dot" style="bottom: 15%; left: 0%; animation-delay: 0.8s"></div>
+            <div class="lg:col-span-4 flex justify-center reveal delay-1">
+                <div class="relative group float-anim">
+                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-pink-200/50 rounded-full blur-xl animate-pulse"></div>
+                    <div class="absolute -bottom-4 -right-4 w-16 h-16 bg-pink-100/50 rounded-full blur-xl animate-pulse delay-700"></div>
                     
-                    <div class="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-[2rem] sm:rounded-[3rem] overflow-hidden border-4 sm:border-8 border-white shadow-2xl rotate-2 group-hover:rotate-0 transition-all duration-700">
-                        <img src="WhatsApp Image 2026-02-06 at 8.11.17 PM.jpeg" alt="Jagadhita Roem" class="w-full h-full object-cover">
+                    <div class="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-[2.5rem] sm:rounded-[4rem] overflow-hidden border-4 sm:border-8 border-white shadow-2xl transition-all duration-700 group-hover:rounded-[1.5rem]">
+                        <img src="WhatsApp Image 2026-02-06 at 8.11.17 PM.jpeg" alt="Jagadhita Roem" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                     </div>
                 </div>
             </div>
             
-            <div class="lg:col-span-8 text-center lg:text-left space-y-4">
+            <div class="lg:col-span-8 text-center lg:text-left space-y-4 reveal delay-2">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100/50 text-pink-500 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase">
                     ✨ Student • Creative • Visionary
                 </div>
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter text-gray-900 leading-tight md:leading-none">
                     Jagadhita <span class="gradient-text">Roem.</span>
                 </h1>
-                <p class="cursive text-2xl sm:text-3xl text-pink-400">Creative Explorer & Lifelong Learner</p>
+                <p class="cursive text-2xl sm:text-4xl text-pink-400">Creative Explorer & Lifelong Learner</p>
                 <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                     Halo! Saya Jagadhita Roem, seorang pelajar yang berdedikasi tinggi dan lahir pada 20 Juli 2008. Saya dikenal sebagai pribadi yang disiplin, tepat waktu, dan memiliki inisiatif tinggi dalam menyelesaikan tanggung jawab. Saya sangat senang mengeksplorasi kreativitas melalui journaling dan teknik tata rias, serta memiliki keinginan kuat untuk terus berkembang baik secara akademik maupun karakter.
                 </p>
@@ -159,27 +157,27 @@
         <!-- Main Bento Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
             
-            <!-- Left Column: Info & Skills -->
+            <!-- Left Column -->
             <div class="lg:col-span-4 space-y-6">
-                <!-- Contact & Bio Info -->
-                <div class="premium-card p-6 md:p-8">
+                <!-- Contact Card -->
+                <div class="premium-card p-6 md:p-8 reveal delay-3">
                     <h3 class="text-lg md:text-xl font-bold mb-6 flex items-center gap-2 text-gray-800 border-b border-pink-50 pb-2">Contact & Info</h3>
                     <div class="space-y-4 text-sm">
-                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/40 hover:bg-white transition-all group">
-                            <span class="text-lg group-hover:scale-125 transition-transform">🗓️</span>
+                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/40 hover:bg-white transition-all group cursor-default">
+                            <span class="text-lg group-hover:scale-125 group-hover:rotate-12 transition-transform">🗓️</span>
                             <div>
                                 <p class="text-[9px] uppercase font-bold text-gray-400 tracking-wider">Tahun Lahir</p>
                                 <p class="font-bold text-gray-700">20 Juli 2008</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-3 p-3 rounded-2xl bg-white/40 hover:bg-white transition-all group">
-                            <span class="text-lg group-hover:scale-125 transition-transform">📍</span>
+                        <div class="flex items-start gap-3 p-3 rounded-2xl bg-white/40 hover:bg-white transition-all group cursor-default">
+                            <span class="text-lg group-hover:scale-125 group-hover:-rotate-12 transition-transform">📍</span>
                             <div>
                                 <p class="text-[9px] uppercase font-bold text-gray-400 tracking-wider">Alamat</p>
                                 <p class="font-bold text-gray-700 leading-tight">Kp. Babakan Rt02/09 Des. Rancamanyar Kec. Baleendah Kab. Bandung 40375</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/40 hover:bg-white transition-all group">
+                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/40 hover:bg-white transition-all group cursor-default">
                             <span class="text-lg group-hover:scale-125 transition-transform">📞</span>
                             <div>
                                 <p class="text-[9px] uppercase font-bold text-gray-400 tracking-wider">Telepon</p>
@@ -187,148 +185,145 @@
                             </div>
                         </div>
                         <div class="pt-4 border-t border-pink-50 flex flex-col gap-3">
-                            <a href="#" class="flex items-center gap-3 text-pink-500 font-bold hover:translate-x-1 transition-transform">
+                            <a href="#" class="flex items-center gap-3 text-pink-500 font-bold hover:translate-x-3 transition-all duration-300">
                                 <span class="text-base">📸</span> <span class="text-xs sm:text-sm">@jagadhitaroem</span>
                             </a>
-                            <a href="#" class="flex items-center gap-3 text-pink-500 font-bold hover:translate-x-1 transition-transform">
+                            <a href="#" class="flex items-center gap-3 text-pink-500 font-bold hover:translate-x-3 transition-all duration-300">
                                 <span class="text-base">🎵</span> <span class="text-xs sm:text-sm">@jyfrogletta</span>
-                            </a>
-                            <a href="#" class="flex items-center gap-3 text-pink-500 font-bold hover:translate-x-1 transition-transform">
-                                <span class="text-base">📧</span> <span class="text-xs sm:text-sm">jagadhitasaja@gmail.com</span>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Hard & Soft Skills -->
-                <div class="premium-card p-6 md:p-8 bg-gradient-to-br from-white/80 to-pink-50/50">
+                <!-- Expertise Card -->
+                <div class="premium-card p-6 md:p-8 bg-gradient-to-br from-white/80 to-pink-50/50 reveal delay-4">
                     <h3 class="text-lg md:text-xl font-bold mb-6 text-gray-800 border-b border-pink-100 pb-2">Expertise</h3>
                     <div class="space-y-5">
-                        <div class="space-y-2">
-                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-wider text-gray-500">
-                                <span>Komunikasi Efektif</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="h-1.5 w-full bg-white rounded-full overflow-hidden">
-                                <div class="h-full bg-pink-400 w-[95%] rounded-full"></div>
-                            </div>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-wider text-gray-500">
-                                <span>Adaptabilitas</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="h-1.5 w-full bg-white rounded-full overflow-hidden">
-                                <div class="h-full bg-pink-400 w-[90%] rounded-full"></div>
-                            </div>
-                        </div>
-                        <div class="space-y-2">
+                        <div class="space-y-2 group">
                             <div class="flex justify-between text-[10px] font-bold uppercase tracking-wider text-gray-500">
                                 <span>Time Management</span>
-                                <span>92%</span>
+                                <span class="group-hover:text-pink-500 transition-colors">95%</span>
                             </div>
                             <div class="h-1.5 w-full bg-white rounded-full overflow-hidden">
-                                <div class="h-full bg-pink-400 w-[92%] rounded-full"></div>
+                                <div class="h-full bg-pink-400 w-0 group-hover:w-[95%] transition-all duration-1000 ease-out"></div>
+                            </div>
+                        </div>
+                        <div class="space-y-2 group">
+                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                                <span>Komunikasi efektif</span>
+                                <span class="group-hover:text-pink-500 transition-colors">90%</span>
+                            </div>
+                            <div class="h-1.5 w-full bg-white rounded-full overflow-hidden">
+                                <div class="h-full bg-pink-400 w-0 group-hover:w-[90%] transition-all duration-1000 ease-out"></div>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2 py-1 bg-white border border-pink-100 rounded-lg text-[9px] font-bold text-pink-500 uppercase tracking-tighter">Inisiatif Tinggi</span>
-                            <span class="px-2 py-1 bg-white border border-pink-100 rounded-lg text-[9px] font-bold text-pink-500 uppercase tracking-tighter">Detail Oriented</span>
-                            <span class="px-2 py-1 bg-white border border-pink-100 rounded-lg text-[9px] font-bold text-pink-500 uppercase tracking-tighter">Self Urgency</span>
-                            <span class="px-2 py-1 bg-white border border-pink-100 rounded-lg text-[9px] font-bold text-pink-500 uppercase tracking-tighter">Sigap</span>
+                            <span class="px-2 py-1 bg-white border border-pink-100 rounded-lg text-[9px] font-bold text-pink-500 uppercase tracking-tighter hover:bg-pink-500 hover:text-white transition-colors cursor-default">Self Urgency & Sigap</span>
+                            <span class="px-2 py-1 bg-white border border-pink-100 rounded-lg text-[9px] font-bold text-pink-500 uppercase tracking-tighter hover:bg-pink-500 hover:text-white transition-colors cursor-default">Detail Oriented</span>
+                            <span class="px-2 py-1 bg-white border border-pink-100 rounded-lg text-[9px] font-bold text-pink-500 uppercase tracking-tighter hover:bg-pink-500 hover:text-white transition-colors cursor-default">Adaptabilitas</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Timeline & Certs -->
+            <!-- Right Column -->
             <div class="lg:col-span-8 space-y-6">
-                <!-- Education -->
-                <div class="premium-card p-6 md:p-10">
+                <!-- Education Card -->
+                <div class="premium-card p-6 md:p-10 reveal delay-3">
                     <h3 class="text-2xl md:text-3xl font-black italic mb-8 md:mb-10 text-gray-800">Education</h3>
                     <div class="ml-6 md:ml-8 border-l-2 border-pink-100 space-y-8 md:space-y-10">
-                        <div class="timeline-item relative pl-6 md:pl-8">
+                        <div class="relative pl-6 md:pl-8 group">
+                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 bg-white border-4 border-pink-500 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
                             <h4 class="text-lg md:text-xl font-bold text-pink-600">SMA KP Baleendah</h4>
                             <p class="text-xs md:text-sm font-bold text-gray-400">Lulus Tahun 2026</p>
                         </div>
-                        <div class="timeline-item relative pl-6 md:pl-8">
+                        <div class="relative pl-6 md:pl-8 group">
+                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 bg-white border-4 border-gray-300 rounded-full group-hover:border-pink-500 group-hover:scale-150 transition-all duration-300"></div>
                             <h4 class="text-lg md:text-xl font-bold text-gray-800">MTS 31 Banjaran</h4>
                             <p class="text-xs md:text-sm font-bold text-gray-400">Lulus Tahun 2023</p>
                         </div>
-                        <div class="timeline-item relative pl-6 md:pl-8">
+                        <div class="relative pl-6 md:pl-8 group">
+                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 bg-white border-4 border-gray-200 rounded-full group-hover:border-pink-500 group-hover:scale-150 transition-all duration-300"></div>
                             <h4 class="text-lg md:text-xl font-bold text-gray-800">SDN Rancamanyar 06</h4>
                             <p class="text-xs md:text-sm font-bold text-gray-400">Lulus Tahun 2020</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Certificates & Achievement -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="premium-card p-6 md:p-8 bg-gradient-to-br from-pink-50 to-white text-gray-800 border-pink-100">
-                        <h3 class="text-lg md:text-xl font-bold mb-6 flex items-center gap-2 text-pink-600"><span>🏆</span> Certificates</h3>
-                        <div class="space-y-3">
-                            <div class="bg-white/60 p-3 rounded-xl border border-pink-100 hover:border-pink-300 transition-colors">
-                                <p class="font-bold leading-none text-xs text-gray-800">Juara 1 Baca Tulis Qur'an</p>
-                                <p class="text-[9px] text-pink-400 font-bold mt-1 uppercase tracking-wider">Desa Rancamanyar</p>
+                <!-- Organizations Card (Updated) -->
+                <div class="premium-card p-6 md:p-10 reveal delay-4">
+                    <h3 class="text-2xl md:text-3xl font-black italic mb-8 text-gray-800">Organizations</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- OSIS -->
+                        <div class="p-5 rounded-2xl bg-white/40 border border-white hover:bg-white hover:shadow-lg transition-all group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="p-2 bg-pink-100 rounded-lg group-hover:bg-pink-500 group-hover:text-white transition-colors">📄</div>
+                                <h4 class="font-bold text-gray-800">OSIS SMA KP Baleendah</h4>
                             </div>
-                            <div class="bg-white/60 p-3 rounded-xl border border-pink-100 hover:border-pink-300 transition-colors">
-                                <p class="font-bold leading-none text-xs text-gray-800">Juara 1 Tahfidz Qur'an</p>
-                                <p class="text-[9px] text-pink-400 font-bold mt-1 uppercase tracking-wider">Desa Rancamanyar</p>
-                            </div>
-                            <div class="bg-white/60 p-3 rounded-xl border border-pink-100 hover:border-pink-300 transition-colors">
-                                <p class="font-bold leading-none text-xs text-gray-800">Juara 1 TKA Ekonomi</p>
-                                <p class="text-[9px] text-pink-400 font-bold mt-1 uppercase tracking-wider">SMA KP Baleendah</p>
-                            </div>
+                            <p class="text-xs text-pink-500 font-bold uppercase tracking-widest mb-2">Sekretaris</p>
+                            <p class="text-[11px] text-gray-500 leading-relaxed">Mengelola administrasi organisasi, pencatatan agenda, dan mendukung koordinasi seluruh bidang kegiatan sekolah.</p>
                         </div>
-                    </div>
-
-                    <div class="premium-card p-6 md:p-8 bg-white space-y-6">
-                        <h3 class="text-lg md:text-xl font-bold text-center text-gray-800">Languages</h3>
-                        <div class="flex justify-around items-center h-full pb-4">
-                            <div class="text-center">
-                                <div class="w-14 h-14 md:w-16 md:h-16 rounded-full border-4 border-pink-500 flex items-center justify-center font-bold text-pink-500 text-sm">ID</div>
-                                <p class="text-[9px] md:text-[10px] font-bold mt-2 uppercase tracking-widest text-gray-500">Native</p>
+                        <!-- English Club -->
+                        <div class="p-5 rounded-2xl bg-white/40 border border-white hover:bg-white hover:shadow-lg transition-all group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="p-2 bg-pink-100 rounded-lg group-hover:bg-pink-500 group-hover:text-white transition-colors">🗣️</div>
+                                <h4 class="font-bold text-gray-800">English Club SMA KP</h4>
                             </div>
-                            <div class="text-center">
-                                <div class="relative w-14 h-14 md:w-16 md:h-16">
-                                    <svg class="w-full h-full transform -rotate-90">
-                                        <circle cx="28" cy="28" r="24" stroke="#fce4ec" stroke-width="4" fill="transparent" class="md:hidden" />
-                                        <circle cx="28" cy="28" r="24" stroke="#ff4d6d" stroke-width="4" fill="transparent" stroke-dasharray="150.8" stroke-dashoffset="30.1" class="md:hidden" />
-                                        
-                                        <circle cx="32" cy="32" r="28" stroke="#fce4ec" stroke-width="4" fill="transparent" class="hidden md:block" />
-                                        <circle cx="32" cy="32" r="28" stroke="#ff4d6d" stroke-width="4" fill="transparent" stroke-dasharray="175.9" stroke-dashoffset="35.1" class="hidden md:block" />
-                                    </svg>
-                                    <div class="absolute inset-0 flex items-center justify-center font-bold text-gray-800 text-[10px] md:text-xs">80%</div>
-                                </div>
-                                <p class="text-[9px] md:text-[10px] font-bold mt-2 uppercase tracking-widest text-gray-500">English</p>
+                            <p class="text-xs text-pink-500 font-bold uppercase tracking-widest mb-2">Anggota Aktif</p>
+                            <p class="text-[11px] text-gray-500 leading-relaxed">Berpartisipasi aktif dalam pengembangan kemampuan berbahasa Inggris dan kegiatan diskusi antar anggota.</p>
+                        </div>
+                        <!-- Tahsin -->
+                        <div class="p-5 rounded-2xl bg-white/40 border border-white hover:bg-white hover:shadow-lg transition-all group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="p-2 bg-pink-100 rounded-lg group-hover:bg-pink-500 group-hover:text-white transition-colors">📖</div>
+                                <h4 class="font-bold text-gray-800">Tahsin MTS 31 Banjaran</h4>
                             </div>
+                            <p class="text-xs text-pink-500 font-bold uppercase tracking-widest mb-2">Anggota</p>
+                            <p class="text-[11px] text-gray-500 leading-relaxed">Fokus pada perbaikan bacaan Al-Qur'an dan memperdalam ilmu tajwid selama masa sekolah menengah.</p>
+                        </div>
+                        <!-- Pramuka -->
+                        <div class="p-5 rounded-2xl bg-white/40 border border-white hover:bg-white hover:shadow-lg transition-all group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="p-2 bg-pink-100 rounded-lg group-hover:bg-pink-500 group-hover:text-white transition-colors">⚜️</div>
+                                <h4 class="font-bold text-gray-800">Pramuka SDN 06</h4>
+                            </div>
+                            <p class="text-xs text-pink-500 font-bold uppercase tracking-widest mb-2">Anggota</p>
+                            <p class="text-[11px] text-gray-500 leading-relaxed">Membangun kedisiplinan, kerjasama tim, dan keterampilan kepanduan dasar sejak dini.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Organization -->
-                <div class="premium-card p-6 md:p-8">
-                    <h3 class="text-xl md:text-2xl font-bold mb-6 text-gray-800">Organizations</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-4 bg-pink-50/50 rounded-2xl border border-pink-100 group hover:shadow-md transition-all">
-                            <h4 class="font-bold text-pink-600 transition-colors group-hover:text-pink-700">Sekretaris OSIS</h4>
-                            <p class="text-[9px] text-gray-500 italic mb-2">SMA KP Baleendah</p>
-                            <p class="text-[10px] leading-relaxed text-gray-600">Manajemen dokumen & koordinasi administratif antar divisi organisasi.</p>
+                <!-- Mixed Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="premium-card p-6 md:p-8 bg-gradient-to-br from-pink-50 to-white reveal delay-4">
+                        <h3 class="text-lg md:text-xl font-bold mb-6 flex items-center gap-2 text-pink-600"><span>🏆</span> Certificates</h3>
+                        <div class="space-y-3">
+                            <div class="bg-white/60 p-3 rounded-xl border border-pink-100 hover:translate-x-2 transition-all cursor-default">
+                                <p class="font-bold text-xs text-gray-800">Juara 1 TKA Ekonomi</p>
+                                <p class="text-[9px] text-pink-400 font-bold uppercase mt-1">SMA KP Baleendah</p>
+                            </div>
+                            <div class="bg-white/60 p-3 rounded-xl border border-pink-100 hover:translate-x-2 transition-all cursor-default">
+                                <p class="font-bold text-xs text-gray-800">Juara 1 Baca Tulis Qur'an</p>
+                                <p class="text-[9px] text-pink-400 font-bold uppercase mt-1">Desa Rancamanyar</p>
+                            </div>
+                            <div class="bg-white/60 p-3 rounded-xl border border-pink-100 hover:translate-x-2 transition-all cursor-default">
+                                <p class="font-bold text-xs text-gray-800">Juara 1 Tahfidz Qur'an</p>
+                                <p class="text-[9px] text-pink-400 font-bold uppercase mt-1">Desa Rancamanyar</p>
+                            </div>
                         </div>
-                        <div class="p-4 bg-white rounded-2xl border border-gray-100 group hover:shadow-md transition-all">
-                            <h4 class="font-bold text-gray-700 transition-colors group-hover:text-pink-500">English Club</h4>
-                            <p class="text-[9px] text-gray-400 mb-2">SMA KP Baleendah</p>
-                            <p class="text-[10px] leading-relaxed text-gray-500">Melatih kepercayaan diri komunikasi publik dengan bahasa internasional.</p>
-                        </div>
-                        <div class="p-4 bg-white rounded-2xl border border-gray-100 group hover:shadow-md transition-all">
-                            <h4 class="font-bold text-gray-700 transition-colors group-hover:text-pink-500">Ekskul Tahsin</h4>
-                            <p class="text-[9px] text-gray-400 mb-2">MTS 31 Banjaran</p>
-                            <p class="text-[10px] leading-relaxed text-gray-500">Meningkatkan kefasihan membaca & pembentukan karakter spiritual.</p>
-                        </div>
-                        <div class="p-4 bg-white rounded-2xl border border-gray-100 group hover:shadow-md transition-all">
-                            <h4 class="font-bold text-gray-700 transition-colors group-hover:text-pink-500">Pramuka</h4>
-                            <p class="text-[9px] text-gray-400 mb-2">SDN Rancamanyar 06</p>
-                            <p class="text-[10px] leading-relaxed text-gray-500">Mengembangkan kemandirian, kerja sama tim, dan ketangkasan fisik.</p>
+                    </div>
+
+                    <div class="premium-card p-6 md:p-8 bg-white reveal delay-5 flex flex-col items-center justify-center space-y-4">
+                        <h3 class="text-lg font-bold text-gray-800">Languages</h3>
+                        <div class="flex gap-8">
+                            <div class="text-center group">
+                                <div class="w-16 h-16 rounded-full border-4 border-pink-500 flex items-center justify-center font-bold text-pink-500 group-hover:bg-pink-500 group-hover:text-white transition-all duration-500">ID</div>
+                                <p class="text-[9px] font-bold mt-2 text-gray-400 uppercase tracking-widest">Native</p>
+                            </div>
+                            <div class="text-center group">
+                                <div class="w-16 h-16 rounded-full border-4 border-gray-100 flex items-center justify-center font-bold text-gray-400 group-hover:border-pink-500 group-hover:text-pink-500 transition-all duration-500">EN</div>
+                                <p class="text-[9px] font-bold mt-2 text-gray-400 uppercase tracking-widest">Active</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -336,32 +331,31 @@
         </div>
 
         <!-- Hobby Section -->
-        <div class="mt-6 premium-card p-8 md:p-10 bg-gradient-to-br from-[#ff4d6d] to-[#ff8fa3] text-white border-none shadow-xl">
+        <div class="mt-6 premium-card p-8 md:p-10 bg-gradient-to-r from-[#ff4d6d] to-[#ff8fa3] text-white border-none shadow-xl reveal delay-5">
             <h3 class="text-2xl md:text-3xl font-bold mb-8 cursive text-pink-100 text-center md:text-left">My Daily Joys</h3>
-            <div class="grid grid-cols-3 gap-4 md:flex md:flex-wrap md:justify-around">
-                <div class="text-center group">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-white/20 backdrop-blur-md rounded-2xl sm:rounded-3xl flex items-center justify-center text-2xl sm:text-3xl mb-3 group-hover:scale-110 group-hover:bg-white/40 transition-all duration-500">📔</div>
-                    <p class="font-bold text-[10px] sm:text-sm tracking-wide">Journaling</p>
+            <div class="grid grid-cols-3 md:flex md:justify-around gap-4">
+                <div class="text-center group cursor-pointer">
+                    <div class="w-14 h-14 sm:w-20 sm:h-20 mx-auto bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center text-3xl group-hover:rotate-[360deg] group-hover:scale-125 transition-all duration-1000">📔</div>
+                    <p class="font-bold text-xs sm:text-sm mt-3 opacity-80 group-hover:opacity-100">Journaling</p>
                 </div>
-                <div class="text-center group">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-white/20 backdrop-blur-md rounded-2xl sm:rounded-3xl flex items-center justify-center text-2xl sm:text-3xl mb-3 group-hover:scale-110 group-hover:bg-white/40 transition-all duration-500">🌍</div>
-                    <p class="font-bold text-[10px] sm:text-sm tracking-wide">Travelling</p>
+                <div class="text-center group cursor-pointer">
+                    <div class="w-14 h-14 sm:w-20 sm:h-20 mx-auto bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center text-3xl group-hover:rotate-[360deg] group-hover:scale-125 transition-all duration-1000">🌍</div>
+                    <p class="font-bold text-xs sm:text-sm mt-3 opacity-80 group-hover:opacity-100">Travelling</p>
                 </div>
-                <div class="text-center group">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-white/20 backdrop-blur-md rounded-2xl sm:rounded-3xl flex items-center justify-center text-2xl sm:text-3xl mb-3 group-hover:scale-110 group-hover:bg-white/40 transition-all duration-500">🎨</div>
-                    <p class="font-bold text-[10px] sm:text-sm tracking-wide">Makeup Art</p>
+                <div class="text-center group cursor-pointer">
+                    <div class="w-14 h-14 sm:w-20 sm:h-20 mx-auto bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center text-3xl group-hover:rotate-[360deg] group-hover:scale-125 transition-all duration-1000">🎨</div>
+                    <p class="font-bold text-xs sm:text-sm mt-3 opacity-80 group-hover:opacity-100">Makeup Art</p>
                 </div>
             </div>
         </div>
 
-        <footer class="mt-12 md:mt-16 text-center pb-10">
-            <div class="h-px w-20 bg-pink-200 mx-auto mb-6"></div>
-            <p class="text-[9px] md:text-[10px] font-bold text-pink-300 uppercase tracking-[0.3em] sm:tracking-[0.5em]">Jagadhita Roem • Portfolio 2026</p>
+        <footer class="mt-12 text-center pb-10 reveal delay-5">
+            <div class="h-px w-20 bg-pink-100 mx-auto mb-6"></div>
+            <p class="text-[9px] font-bold text-pink-300 uppercase tracking-[0.5em]">Jagadhita Roem • Digital CV 2026</p>
         </footer>
     </div>
 
     <script>
-        // Spotlight Effect
         document.querySelectorAll('.premium-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -371,6 +365,17 @@
                 card.style.setProperty('--mouse-y', `${y}px`);
             });
         });
+
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
