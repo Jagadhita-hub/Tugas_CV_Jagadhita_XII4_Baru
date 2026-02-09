@@ -3,379 +3,490 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jagadhita Roem - Digital CV</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <title>CV Aesthetic - Jagadhita Roem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --baby-pink: #fff0f3;
-            --soft-pink: #ffccd5;
-            --accent-pink: #ff8fa3;
-            --deep-pink: #ff4d6d;
+            --strawberry-red: #ff6b81;
+            --soft-pink: #ffeef0;
+            --cream: #fffaf0;
+            --leaf-green: #7bed9f;
+            --text-brown: #5d4037;
+            --accent-pink: #ffafbd;
+            --white-cream: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><text y='20' font-size='20'>🍓</text></svg>"), auto;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #fff;
-            color: #2d3436;
+            background-color: var(--cream);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-brown);
+            line-height: 1.6;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(var(--accent-pink) 1.5px, transparent 1.5px),
+                radial-gradient(var(--strawberry-red) 0.5px, transparent 0.5px);
+            background-size: 40px 40px, 80px 80px;
+            perspective: 1000px;
         }
 
-        .cursive {
-            font-family: 'Dancing Script', cursive;
-        }
-
-        /* Background Mesh Glow yang dinamis */
-        .mesh-gradient {
+        /* Particles Layer */
+        #particles {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(at 0% 0%, rgba(255, 182, 193, 0.4) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(255, 240, 243, 0.5) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(255, 143, 163, 0.3) 0px, transparent 50%),
-                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.6) 0px, transparent 50%);
-            animation: backgroundFlow 15s ease infinite alternate;
-        }
-
-        @keyframes backgroundFlow {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-
-        /* Reveal Animation on Load */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: revealIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        @keyframes revealIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Premium Card dengan Animasi */
-        .premium-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @media (min-width: 768px) {
-            .premium-card { border-radius: 2rem; }
-        }
-
-        .premium-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--accent-pink);
-            box-shadow: 0 30px 60px -15px rgba(255, 77, 109, 0.2);
-        }
-
-        /* Floating Animation */
-        .float-anim {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(2deg); }
-            50% { transform: translateY(-15px) rotate(-1deg); }
-        }
-
-        /* Spotlight Effect */
-        .premium-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 143, 163, 0.25) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity 0.5s;
             pointer-events: none;
+            z-index: 10;
         }
 
-        .premium-card:hover::before { opacity: 1; }
-
-        .gradient-text {
-            background: linear-gradient(90deg, #ff4d6d, #ff8fa3, #ff4d6d);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
+        .particle {
+            position: absolute;
+            animation: fall linear infinite;
         }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
         }
 
-        /* Staggered Delay for Reveal */
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
+        /* Parallax Background Elements */
+        .parallax-item {
+            position: fixed;
+            z-index: -1;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+            transition: transform 0.2s ease-out;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Wiggly Header */
+        header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 15px 35px rgba(255, 107, 129, 0.2);
+            border: 6px double var(--strawberry-red);
+            margin-bottom: 40px;
+            animation: wiggle 4s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+        }
+
+        .profile-frame {
+            width: 190px;
+            height: 190px;
+            margin: 0 auto 20px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 70%;
+            border: 6px solid var(--strawberry-red);
+            position: relative;
+            background: var(--soft-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; }
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem;
+            color: var(--strawberry-red);
+            text-shadow: 3px 3px 0px white, 5px 5px 0px var(--soft-pink);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            background: var(--strawberry-red);
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.3);
+            transform: skew(-5deg);
+        }
+
+        /* Section Styling with Tilt Effect */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        section:hover {
+            border-color: var(--strawberry-red);
+            box-shadow: 0 20px 40px rgba(255, 107, 129, 0.2);
+        }
+
+        h2 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--strawberry-red);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+        }
+
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 3px;
+            background: repeating-linear-gradient(90deg, var(--soft-pink), var(--soft-pink) 5px, transparent 5px, transparent 10px);
+        }
+
+        /* Decoration elements inside sections */
+        .card-deco {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* Pill Animations */
+        .pill {
+            background: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            border: 2px solid var(--soft-pink);
+            transition: 0.3s;
+            display: inline-block;
+            margin: 5px;
+            font-weight: 600;
+        }
+
+        .pill:hover {
+            background: var(--strawberry-red);
+            color: white;
+            transform: scale(1.1) rotate(3deg);
+            border-color: white;
+        }
+
+        /* Education Timeline */
+        .timeline-item {
+            border-left: 3px solid var(--leaf-green);
+            padding-left: 20px;
+            padding-bottom: 20px;
+            position: relative;
+            margin-left: 10px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -13px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 3px solid var(--strawberry-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* Skills Progress */
+        .skill-item { margin-bottom: 15px; }
+        .skill-bar-bg {
+            background: var(--soft-pink);
+            height: 14px;
+            border-radius: 10px;
+            margin-top: 8px;
+            border: 1px solid rgba(255, 107, 129, 0.2);
+        }
+
+        .skill-bar-fill {
+            background: linear-gradient(90deg, var(--strawberry-red), #ff9eb5);
+            height: 100%;
+            border-radius: 10px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.1, 0.5, 0.5, 1);
+            position: relative;
+        }
+
+        /* Social Link Floating Animation */
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            border-radius: 15px;
+            background: var(--white-cream);
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: var(--text-brown);
+            font-weight: 600;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .social-link:hover {
+            background: var(--soft-pink);
+            transform: translateX(10px);
+            border-color: var(--strawberry-red);
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 30px;
+            background: white;
+            border-radius: 50px 50px 0 0;
+            border-top: 5px solid var(--leaf-green);
+        }
+
+        @media (max-width: 768px) {
+            .grid-container { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <div class="mesh-gradient"></div>
+    <div id="particles"></div>
 
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12">
-        
-        <!-- Header Section -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-center mb-10 md:mb-16">
-            <div class="lg:col-span-4 flex justify-center reveal delay-1">
-                <div class="relative group float-anim">
-                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-pink-200/50 rounded-full blur-xl animate-pulse"></div>
-                    <div class="absolute -bottom-4 -right-4 w-16 h-16 bg-pink-100/50 rounded-full blur-xl animate-pulse delay-700"></div>
-                    
-                    <div class="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-[2.5rem] sm:rounded-[4rem] overflow-hidden border-4 sm:border-8 border-white shadow-2xl transition-all duration-700 group-hover:rounded-[1.5rem]">
-                        <img src="WhatsApp Image 2026-02-06 at 8.11.17 PM.jpeg" alt="Jagadhita Roem" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+    <!-- Parallax items -->
+    <div class="parallax-item" style="top: 15%; left: 2%; font-size: 4rem;">🍓</div>
+    <div class="parallax-item" style="top: 45%; right: 3%; font-size: 3rem;">🍰</div>
+    <div class="parallax-item" style="bottom: 20%; left: 4%; font-size: 3.5rem;">🌸</div>
+    <div class="parallax-item" style="top: 70%; right: 6%; font-size: 2.5rem;">🍓</div>
+
+    <div class="container">
+        <header>
+            <div class="profile-frame">
+                <img src="WhatsApp Image 2026-02-06 at 8.11.17 PM.jpeg" alt="Jagadhita Roem" class="profile-img">
+            </div>
+            <h1>Jagadhita Roem</h1>
+            <div class="subtitle">✨ Strawberry Dreamer ✨</div>
+            <p style="margin-top: 20px; font-weight: 500; font-size: 1.1rem; line-height: 1.4;">
+                "Manis seperti stroberi, sigap dalam aksi! Menata mimpi lewat jurnal dan melangkah berani dengan komunikasi yang pasti."
+            </p>
+        </header>
+
+        <div class="grid-container">
+            <!-- Profil -->
+            <section data-tilt>
+                <h2>🍓 Profil Manis</h2>
+                <div style="margin-bottom: 15px;">
+                    <p style="font-weight: 700; color: var(--strawberry-red);">Ulang Tahun</p>
+                    <p>20 Juli 2008 (Calon Bintang! 🌟)</p>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <p style="font-weight: 700; color: var(--strawberry-red);">Rumah Stroberi</p>
+                    <p>Kp. Babakan Rt02/09 Des. Rancamanyar Kec. Baleendah Kab. Bandung 40375</p>
+                </div>
+                <div>
+                    <p style="font-weight: 700; color: var(--strawberry-red); margin-bottom: 5px;">Hobi Favorit</p>
+                    <div class="pill">📓 Journaling</div>
+                    <div class="pill">✈️ Travelling</div>
+                    <div class="pill">💄 Make-up</div>
+                </div>
+                <div class="card-deco">🌸</div>
+            </section>
+
+            <!-- Sosmed -->
+            <section data-tilt>
+                <h2>💌 Mari Berteman!</h2>
+                <div class="social-link">
+                    <span style="font-size: 1.5rem;">📞</span> <span>+62 822-4029-6565</span>
+                </div>
+                <a href="mailto:jagadhitasaja@gmail.com" class="social-link">
+                    <span style="font-size: 1.5rem;">📧</span> <span>jagadhitasaja@gmail.com</span>
+                </a>
+                <a href="https://instagram.com/jagadhitaroem" class="social-link">
+                    <span style="font-size: 1.5rem;">📸</span> <span>@jagadhitaroem</span>
+                </a>
+                <a href="https://tiktok.com/@jyfrogletta" class="social-link">
+                    <span style="font-size: 1.5rem;">🎵</span> <span>@jyfrogletta</span>
+                </a>
+                <div class="card-deco">🎀</div>
+            </section>
+
+            <!-- Pendidikan -->
+            <section data-tilt>
+                <h2>🎓 Sekolahku</h2>
+                <div class="timeline-item">
+                    <div class="timeline-marker">🍓</div>
+                    <strong style="color: var(--strawberry-red);">SMA KP Baleendah</strong>
+                    <p>Lulus: 2026 (On Progress ✨)</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">🍰</div>
+                    <strong style="color: var(--strawberry-red);">MTS 31 Banjaran</strong>
+                    <p>Lulus: 2023</p>
+                </div>
+                <div class="timeline-item" style="padding-bottom: 0;">
+                    <div class="timeline-marker">🌸</div>
+                    <strong style="color: var(--strawberry-red);">SDN Rancamanyar 06</strong>
+                    <p>Lulus: 2020</p>
+                </div>
+                <div class="card-deco">🏫</div>
+            </section>
+
+            <!-- Skill -->
+            <section data-tilt>
+                <h2>✨ Kekuatanku</h2>
+                <div class="skill-item">
+                    <div style="display: flex; justify-content: space-between;">
+                        <strong>Time Management</strong>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div style="display: flex; justify-content: space-between;">
+                        <strong>Communication</strong>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div style="display: flex; justify-content: space-between;">
+                        <strong>Detail Oriented</strong>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95%"></div></div>
+                </div>
+                <div style="margin-top: 15px; background: var(--soft-pink); padding: 10px; border-radius: 15px;">
+                    <p><strong>Bahasa:</strong> Indonesia 🇮🇩 & Inggris (70%) 🇬🇧</p>
+                </div>
+                <div class="card-deco">💪</div>
+            </section>
+
+            <!-- Organisasi -->
+            <section style="grid-column: span 2;" data-tilt>
+                <h2>🍓 Jejak Organisasi</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="background: #fff; padding: 15px; border-radius: 20px; border-left: 5px solid var(--strawberry-red);">
+                        <h4 style="color: var(--strawberry-red); margin-bottom: 10px;">SMA - OSIS & English Club</h4>
+                        <p style="font-size: 0.9rem;">Sebagai <strong>Sekretaris OSIS</strong>, aku belajar mengatur jadwal dan dokumen dengan rapi. Di <strong>English Club</strong>, aku melatih keberanian bicara bahasa Inggris!</p>
+                    </div>
+                    <div style="background: #fff; padding: 15px; border-radius: 20px; border-left: 5px solid var(--leaf-green);">
+                        <h4 style="color: var(--leaf-green); margin-bottom: 10px;">SMP & SD - Tahsin & Pramuka</h4>
+                        <p style="font-size: 0.9rem;"><strong>Tahsin</strong> membuatku lebih fokus pada detail bacaan. <strong>Pramuka</strong> mengajarkanku kemandirian dan kerja tim yang solid.</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="lg:col-span-8 text-center lg:text-left space-y-4 reveal delay-2">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100/50 text-pink-500 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase">
-                    ✨ Student • Creative • Visionary
+                <div class="card-deco">🤝</div>
+            </section>
+
+            <!-- Prestasi -->
+            <section style="grid-column: span 2; background: linear-gradient(135deg, var(--soft-pink), #fff);" data-tilt>
+                <h2>🏆 Kejuaraan Manis</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                    <div class="pill" style="border-style: dotted;">🥇 Juara 1 Baca Tulis Qur'an Desa Rancamanyar</div>
+                    <div class="pill" style="border-style: dotted;">🥇 Juara 1 Tahfidz Qur'an Desa Rancamanyar</div>
+                    <div class="pill" style="border-style: dotted;">🥇 Juara 1 TKA Ekonomi SMA KP Baleendah</div>
                 </div>
-                <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter text-gray-900 leading-tight md:leading-none">
-                    Jagadhita <span class="gradient-text">Roem.</span>
-                </h1>
-                <p class="cursive text-2xl sm:text-4xl text-pink-400">Creative Explorer & Lifelong Learner</p>
-                <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                    Halo! Saya Jagadhita Roem, seorang pelajar yang berdedikasi tinggi dan lahir pada 20 Juli 2008. Saya dikenal sebagai pribadi yang disiplin, tepat waktu, dan memiliki inisiatif tinggi dalam menyelesaikan tanggung jawab. Saya sangat senang mengeksplorasi kreativitas melalui journaling dan teknik tata rias, serta memiliki keinginan kuat untuk terus berkembang baik secara akademik maupun karakter.
-                </p>
-            </div>
+                <div class="card-deco">✨</div>
+            </section>
         </div>
 
-        <!-- Main Bento Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            
-            <!-- Left Column -->
-            <div class="lg:col-span-4 space-y-6">
-                <!-- Contact Card -->
-                <div class="premium-card p-6 md:p-8 reveal delay-3">
-                    <h3 class="text-lg md:text-xl font-bold mb-6 flex items-center gap-2 text-gray-800 border-b border-pink-50 pb-2">Contact & Info</h3>
-                    <div class="space-y-4 text-sm">
-                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/40 hover:bg-white transition-all group cursor-default">
-                            <span class="text-lg group-hover:scale-125 group-hover:rotate-12 transition-transform">🗓️</span>
-                            <div>
-                                <p class="text-[9px] uppercase font-bold text-gray-400 tracking-wider">Tahun Lahir</p>
-                                <p class="font-bold text-gray-700">20 Juli 2008</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3 p-3 rounded-2xl bg-white/40 hover:bg-white transition-all group cursor-default">
-                            <span class="text-lg group-hover:scale-125 group-hover:-rotate-12 transition-transform">📍</span>
-                            <div>
-                                <p class="text-[9px] uppercase font-bold text-gray-400 tracking-wider">Alamat</p>
-                                <p class="font-bold text-gray-700 leading-tight">Kp. Babakan Rt02/09 Des. Rancamanyar Kec. Baleendah Kab. Bandung 40375</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/40 hover:bg-white transition-all group cursor-default">
-                            <span class="text-lg group-hover:scale-125 transition-transform">📞</span>
-                            <div>
-                                <p class="text-[9px] uppercase font-bold text-gray-400 tracking-wider">Telepon</p>
-                                <p class="font-bold text-gray-700">+62 822-4029-6565</p>
-                            </div>
-                        </div>
-                        <div class="pt-4 border-t border-pink-50 flex flex-col gap-3">
-                            <a href="#" class="flex items-center gap-3 text-pink-500 font-bold hover:translate-x-3 transition-all duration-300">
-                                <span class="text-base">📸</span> <span class="text-xs sm:text-sm">@jagadhitaroem</span>
-                            </a>
-                            <a href="#" class="flex items-center gap-3 text-pink-500 font-bold hover:translate-x-3 transition-all duration-300">
-                                <span class="text-base">🎵</span> <span class="text-xs sm:text-sm">@jyfrogletta</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Expertise Card -->
-                <div class="premium-card p-6 md:p-8 bg-gradient-to-br from-white/80 to-pink-50/50 reveal delay-4">
-                    <h3 class="text-lg md:text-xl font-bold mb-6 text-gray-800 border-b border-pink-100 pb-2">Expertise</h3>
-                    <div class="space-y-5">
-                        <div class="space-y-2 group">
-                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-wider text-gray-500">
-                                <span>Time Management</span>
-                                <span class="group-hover:text-pink-500 transition-colors">95%</span>
-                            </div>
-                            <div class="h-1.5 w-full bg-white rounded-full overflow-hidden">
-                                <div class="h-full bg-pink-400 w-0 group-hover:w-[95%] transition-all duration-1000 ease-out"></div>
-                            </div>
-                        </div>
-                        <div class="space-y-2 group">
-                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-wider text-gray-500">
-                                <span>Komunikasi efektif</span>
-                                <span class="group-hover:text-pink-500 transition-colors">90%</span>
-                            </div>
-                            <div class="h-1.5 w-full bg-white rounded-full overflow-hidden">
-                                <div class="h-full bg-pink-400 w-0 group-hover:w-[90%] transition-all duration-1000 ease-out"></div>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2 py-1 bg-white border border-pink-100 rounded-lg text-[9px] font-bold text-pink-500 uppercase tracking-tighter hover:bg-pink-500 hover:text-white transition-colors cursor-default">Self Urgency & Sigap</span>
-                            <span class="px-2 py-1 bg-white border border-pink-100 rounded-lg text-[9px] font-bold text-pink-500 uppercase tracking-tighter hover:bg-pink-500 hover:text-white transition-colors cursor-default">Detail Oriented</span>
-                            <span class="px-2 py-1 bg-white border border-pink-100 rounded-lg text-[9px] font-bold text-pink-500 uppercase tracking-tighter hover:bg-pink-500 hover:text-white transition-colors cursor-default">Adaptabilitas</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column -->
-            <div class="lg:col-span-8 space-y-6">
-                <!-- Education Card -->
-                <div class="premium-card p-6 md:p-10 reveal delay-3">
-                    <h3 class="text-2xl md:text-3xl font-black italic mb-8 md:mb-10 text-gray-800">Education</h3>
-                    <div class="ml-6 md:ml-8 border-l-2 border-pink-100 space-y-8 md:space-y-10">
-                        <div class="relative pl-6 md:pl-8 group">
-                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 bg-white border-4 border-pink-500 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
-                            <h4 class="text-lg md:text-xl font-bold text-pink-600">SMA KP Baleendah</h4>
-                            <p class="text-xs md:text-sm font-bold text-gray-400">Lulus Tahun 2026</p>
-                        </div>
-                        <div class="relative pl-6 md:pl-8 group">
-                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 bg-white border-4 border-gray-300 rounded-full group-hover:border-pink-500 group-hover:scale-150 transition-all duration-300"></div>
-                            <h4 class="text-lg md:text-xl font-bold text-gray-800">MTS 31 Banjaran</h4>
-                            <p class="text-xs md:text-sm font-bold text-gray-400">Lulus Tahun 2023</p>
-                        </div>
-                        <div class="relative pl-6 md:pl-8 group">
-                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 bg-white border-4 border-gray-200 rounded-full group-hover:border-pink-500 group-hover:scale-150 transition-all duration-300"></div>
-                            <h4 class="text-lg md:text-xl font-bold text-gray-800">SDN Rancamanyar 06</h4>
-                            <p class="text-xs md:text-sm font-bold text-gray-400">Lulus Tahun 2020</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Organizations Card (Updated) -->
-                <div class="premium-card p-6 md:p-10 reveal delay-4">
-                    <h3 class="text-2xl md:text-3xl font-black italic mb-8 text-gray-800">Organizations</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- OSIS -->
-                        <div class="p-5 rounded-2xl bg-white/40 border border-white hover:bg-white hover:shadow-lg transition-all group">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="p-2 bg-pink-100 rounded-lg group-hover:bg-pink-500 group-hover:text-white transition-colors">📄</div>
-                                <h4 class="font-bold text-gray-800">OSIS SMA KP Baleendah</h4>
-                            </div>
-                            <p class="text-xs text-pink-500 font-bold uppercase tracking-widest mb-2">Sekretaris</p>
-                            <p class="text-[11px] text-gray-500 leading-relaxed">Mengelola administrasi organisasi, pencatatan agenda, dan mendukung koordinasi seluruh bidang kegiatan sekolah.</p>
-                        </div>
-                        <!-- English Club -->
-                        <div class="p-5 rounded-2xl bg-white/40 border border-white hover:bg-white hover:shadow-lg transition-all group">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="p-2 bg-pink-100 rounded-lg group-hover:bg-pink-500 group-hover:text-white transition-colors">🗣️</div>
-                                <h4 class="font-bold text-gray-800">English Club SMA KP</h4>
-                            </div>
-                            <p class="text-xs text-pink-500 font-bold uppercase tracking-widest mb-2">Anggota Aktif</p>
-                            <p class="text-[11px] text-gray-500 leading-relaxed">Berpartisipasi aktif dalam pengembangan kemampuan berbahasa Inggris dan kegiatan diskusi antar anggota.</p>
-                        </div>
-                        <!-- Tahsin -->
-                        <div class="p-5 rounded-2xl bg-white/40 border border-white hover:bg-white hover:shadow-lg transition-all group">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="p-2 bg-pink-100 rounded-lg group-hover:bg-pink-500 group-hover:text-white transition-colors">📖</div>
-                                <h4 class="font-bold text-gray-800">Tahsin MTS 31 Banjaran</h4>
-                            </div>
-                            <p class="text-xs text-pink-500 font-bold uppercase tracking-widest mb-2">Anggota</p>
-                            <p class="text-[11px] text-gray-500 leading-relaxed">Fokus pada perbaikan bacaan Al-Qur'an dan memperdalam ilmu tajwid selama masa sekolah menengah.</p>
-                        </div>
-                        <!-- Pramuka -->
-                        <div class="p-5 rounded-2xl bg-white/40 border border-white hover:bg-white hover:shadow-lg transition-all group">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="p-2 bg-pink-100 rounded-lg group-hover:bg-pink-500 group-hover:text-white transition-colors">⚜️</div>
-                                <h4 class="font-bold text-gray-800">Pramuka SDN 06</h4>
-                            </div>
-                            <p class="text-xs text-pink-500 font-bold uppercase tracking-widest mb-2">Anggota</p>
-                            <p class="text-[11px] text-gray-500 leading-relaxed">Membangun kedisiplinan, kerjasama tim, dan keterampilan kepanduan dasar sejak dini.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mixed Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="premium-card p-6 md:p-8 bg-gradient-to-br from-pink-50 to-white reveal delay-4">
-                        <h3 class="text-lg md:text-xl font-bold mb-6 flex items-center gap-2 text-pink-600"><span>🏆</span> Certificates</h3>
-                        <div class="space-y-3">
-                            <div class="bg-white/60 p-3 rounded-xl border border-pink-100 hover:translate-x-2 transition-all cursor-default">
-                                <p class="font-bold text-xs text-gray-800">Juara 1 TKA Ekonomi</p>
-                                <p class="text-[9px] text-pink-400 font-bold uppercase mt-1">SMA KP Baleendah</p>
-                            </div>
-                            <div class="bg-white/60 p-3 rounded-xl border border-pink-100 hover:translate-x-2 transition-all cursor-default">
-                                <p class="font-bold text-xs text-gray-800">Juara 1 Baca Tulis Qur'an</p>
-                                <p class="text-[9px] text-pink-400 font-bold uppercase mt-1">Desa Rancamanyar</p>
-                            </div>
-                            <div class="bg-white/60 p-3 rounded-xl border border-pink-100 hover:translate-x-2 transition-all cursor-default">
-                                <p class="font-bold text-xs text-gray-800">Juara 1 Tahfidz Qur'an</p>
-                                <p class="text-[9px] text-pink-400 font-bold uppercase mt-1">Desa Rancamanyar</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="premium-card p-6 md:p-8 bg-white reveal delay-5 flex flex-col items-center justify-center space-y-4">
-                        <h3 class="text-lg font-bold text-gray-800">Languages</h3>
-                        <div class="flex gap-8">
-                            <div class="text-center group">
-                                <div class="w-16 h-16 rounded-full border-4 border-pink-500 flex items-center justify-center font-bold text-pink-500 group-hover:bg-pink-500 group-hover:text-white transition-all duration-500">ID</div>
-                                <p class="text-[9px] font-bold mt-2 text-gray-400 uppercase tracking-widest">Native</p>
-                            </div>
-                            <div class="text-center group">
-                                <div class="w-16 h-16 rounded-full border-4 border-gray-100 flex items-center justify-center font-bold text-gray-400 group-hover:border-pink-500 group-hover:text-pink-500 transition-all duration-500">EN</div>
-                                <p class="text-[9px] font-bold mt-2 text-gray-400 uppercase tracking-widest">Active</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hobby Section -->
-        <div class="mt-6 premium-card p-8 md:p-10 bg-gradient-to-r from-[#ff4d6d] to-[#ff8fa3] text-white border-none shadow-xl reveal delay-5">
-            <h3 class="text-2xl md:text-3xl font-bold mb-8 cursive text-pink-100 text-center md:text-left">My Daily Joys</h3>
-            <div class="grid grid-cols-3 md:flex md:justify-around gap-4">
-                <div class="text-center group cursor-pointer">
-                    <div class="w-14 h-14 sm:w-20 sm:h-20 mx-auto bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center text-3xl group-hover:rotate-[360deg] group-hover:scale-125 transition-all duration-1000">📔</div>
-                    <p class="font-bold text-xs sm:text-sm mt-3 opacity-80 group-hover:opacity-100">Journaling</p>
-                </div>
-                <div class="text-center group cursor-pointer">
-                    <div class="w-14 h-14 sm:w-20 sm:h-20 mx-auto bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center text-3xl group-hover:rotate-[360deg] group-hover:scale-125 transition-all duration-1000">🌍</div>
-                    <p class="font-bold text-xs sm:text-sm mt-3 opacity-80 group-hover:opacity-100">Travelling</p>
-                </div>
-                <div class="text-center group cursor-pointer">
-                    <div class="w-14 h-14 sm:w-20 sm:h-20 mx-auto bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center text-3xl group-hover:rotate-[360deg] group-hover:scale-125 transition-all duration-1000">🎨</div>
-                    <p class="font-bold text-xs sm:text-sm mt-3 opacity-80 group-hover:opacity-100">Makeup Art</p>
-                </div>
-            </div>
-        </div>
-
-        <footer class="mt-12 text-center pb-10 reveal delay-5">
-            <div class="h-px w-20 bg-pink-100 mx-auto mb-6"></div>
-            <p class="text-[9px] font-bold text-pink-300 uppercase tracking-[0.5em]">Jagadhita Roem • Digital CV 2026</p>
+        <footer style="text-align: center;">
+            <p style="color: var(--strawberry-red); font-weight: bold; font-size: 1.2rem;">Made with Love, Jagadhita 🍓</p>
+            <p style="font-size: 0.8rem; opacity: 0.7;">Stay Sweet, Stay Strong!</p>
         </footer>
     </div>
 
     <script>
-        document.querySelectorAll('.premium-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+        // 1. Particle System (Falling Strawberries & Petals)
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const icons = ['🍓', '🌸', '🍰', '✨'];
+            for (let i = 0; i < 20; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.innerText = icons[Math.floor(Math.random() * icons.length)];
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                p.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                p.style.opacity = Math.random() * 0.5 + 0.2;
+                p.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(p);
+            }
+        }
+
+        // 2. Parallax Effect on Mouse Move
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 30;
+            const y = (window.innerHeight / 2 - e.pageY) / 30;
+            
+            document.querySelectorAll('.parallax-item').forEach((item, index) => {
+                const speed = (index + 1) * 0.5;
+                item.style.transform = `translate(${x * speed}px, ${y * speed}px) rotate(${x}deg)`;
             });
         });
 
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                }
+        // 3. Tilt Effect for Sections
+        const sections = document.querySelectorAll('section');
+        sections.forEach(s => {
+            s.addEventListener('mousemove', (e) => {
+                const rect = s.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+                const dx = x - xc;
+                const dy = y - yc;
+                s.style.transform = `perspective(1000px) rotateX(${dy / -10}deg) rotateY(${dx / 10}deg) translateY(-10px)`;
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            s.addEventListener('mouseleave', () => {
+                s.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
+            });
+        });
+
+        // 4. Skill Bar Animation
+        window.onload = () => {
+            createParticles();
+            setTimeout(() => {
+                document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-width');
+                });
+            }, 500);
+        };
     </script>
 </body>
 </html>
